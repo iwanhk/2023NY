@@ -1,0 +1,366 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HTML5+Canvas漂亮的3D烟花动画生日特效</title>
+
+<style>
+html,body{
+	margin:0px;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	background:#000;
+}
+
+.foo {
+            font-family: 'Raleway', sans-serif;
+            color: white;
+            font-size: 10em;
+            margin: auto;
+            text-align: center;
+        }
+
+
+.foo {
+            font-family: "Arial Black";
+            text-shadow: 0.66913px 0.74314px 0 #16a085, 1.33826px 1.48629px 0 #16a185, 2.00739px 2.22943px 0 #16a186, 2.67652px 2.97258px 0 #16a186, 3.34565px 3.71572px 0 #16a186, 4.01478px 4.45887px 0 #16a286, 4.68391px 5.20201px 0 #16a287, 5.35304px 5.94516px 0 #16a287, 6.02218px 6.6883px 0 #16a387, 6.69131px 7.43145px 0 #16a387, 7.36044px 8.17459px 0 #16a388, 8.02957px 8.91774px 0 #16a388, 8.6987px 9.66088px 0 #17a488, 9.36783px 10.40403px 0 #17a488, 10.03696px 11.14717px 0 #17a488, 10.70609px 11.89032px 0 #17a489, 11.37522px 12.63346px 0 #17a589, 12.04435px 13.37661px 0 #17a589, 12.71348px 14.11975px 0 #17a589, 13.38261px 14.8629px 0 #17a68a, 14.05174px 15.60604px 0 #17a68a, 14.72087px 16.34919px 0 #17a68a, 15.39px 17.09233px 0 #17a68a, 16.05913px 17.83548px 0 #17a78b, 16.72827px 18.57862px 0 #17a78b, 17.3974px 19.32177px 0 #17a78b, 18.06653px 20.06491px 0 #17a88b, 18.73566px 20.80806px 0 #17a88b, 19.40479px 21.5512px 0 #17a88c, 20.07392px 22.29434px 0 #17a88c, 20.74305px 23.03749px 0 #17a98c, 21.41218px 23.78063px 0 #17a98c, 22.08131px 24.52378px 0 #17a98d, 22.75044px 25.26692px 0 #17aa8d, 23.41957px 26.01007px 0 #17aa8d, 24.0887px 26.75321px 0 #17aa8d, 24.75783px 27.49636px 0 #17aa8e, 25.42696px 28.2395px 0 #18ab8e, 26.09609px 28.98265px 0 #18ab8e, 26.76522px 29.72579px 0 #18ab8e, 27.43435px 30.46894px 0 #18ab8e, 28.10349px 31.21208px 0 #18ac8f, 28.77262px 31.95523px 0 #18ac8f, 29.44175px 32.69837px 0 #18ac8f, 30.11088px 33.44152px 0 #18ad8f, 30.78001px 34.18466px 0 #18ad90, 31.44914px 34.92781px 0 #18ad90, 32.11827px 35.67095px 0 #18ad90, 32.7874px 36.4141px 0 #18ae90, 33.45653px 37.15724px 0 #18ae91, 34.12566px 37.90039px 0 #18ae91, 34.79479px 38.64353px 0 #18af91, 35.46392px 39.38668px 0 #18af91, 36.13305px 40.12982px 0 #18af91, 36.80218px 40.87297px 0 #18af92, 37.47131px 41.61611px 0 #18b092, 38.14044px 42.35926px 0 #18b092, 38.80958px 43.1024px 0 #18b092, 39.47871px 43.84554px 0 #18b193, 40.14784px 44.58869px 0 #18b193, 40.81697px 45.33183px 0 #18b193, 41.4861px 46.07498px 0 #18b193, 42.15523px 46.81812px 0 #19b293, 42.82436px 47.56127px 0 #19b294, 43.49349px 48.30441px 0 #19b294, 44.16262px 49.04756px 0 #19b294, 44.83175px 49.7907px 0 #19b394, 45.50088px 50.53385px 0 #19b395, 46.17001px 51.27699px 0 #19b395, 46.83914px 52.02014px 0 #19b495, 47.50827px 52.76328px 0 #19b495, 48.1774px 53.50643px 0 #19b496, 48.84653px 54.24957px 0 #19b496, 49.51566px 54.99272px 0 #19b596, 50.1848px 55.73586px 0 #19b596, 50.85393px 56.47901px 0 #19b596, 51.52306px 57.22215px 0 #19b697, 52.19219px 57.9653px 0 #19b697, 52.86132px 58.70844px 0 #19b697, 53.53045px 59.45159px 0 #19b697, 54.19958px 60.19473px 0 #19b798, 54.86871px 60.93788px 0 #19b798, 55.53784px 61.68102px 0 #19b798, 56.20697px 62.42417px 0 #19b898, 56.8761px 63.16731px 0 #19b899, 57.54523px 63.91045px 0 #19b899, 58.21436px 64.6536px 0 #19b899, 58.88349px 65.39674px 0 #1ab999, 59.55262px 66.13989px 0 #1ab999, 60.22175px 66.88303px 0 #1ab99a, 60.89089px 67.62618px 0 #1ab99a, 61.56002px 68.36932px 0 #1aba9a, 62.22915px 69.11247px 0 #1aba9a, 62.89828px 69.85561px 0 #1aba9b, 63.56741px 70.59876px 0 #1abb9b, 64.23654px 71.3419px 0 #1abb9b, 64.90567px 72.08505px 0 #1abb9b, 65.5748px 72.82819px 0 #1abb9c, 66.24393px 73.57134px 0 #1abc9c, 66.91306px 74.31448px 0 #1abc9c;
+}
+        h2 {
+            font-weight: 600;
+            /* 大写转换 */
+            text-transform: uppercase; 
+            text-align: center;
+            font-size: 2em;
+        }
+.text-shadow {
+            color: #f4f4f4;
+            text-shadow: -1px -1px white, 1px 1px gray, 2px 2px #7a7a7a, 3px 3px #757575, 4px 4px #707070, 5px 5px #6b6b6b, 6px 6px #666666, 7px 7px #616161, 8px 8px #5c5c5c, 9px 9px #575757, 10px 10px #525252, 11px 11px #4d4d4d, 18px 18px 30px rgba(0, 0, 0, 0.4), 18px 18px 10px rgba(0, 0, 0, 0.4);
+}
+</style>
+
+</head>
+<body>
+<audio id="a1" loop="loop">
+	<source src="https://music.163.com/song/media/outer/url?id=1877996649.mp3">
+</audio>
+<h2 class="text-shadow">2023， 我宝一起新年快乐!</h2>
+<canvas id="canvas" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas>
+<canvas style="position:absolute;width:100%;height:100%;z-index:9999" class="canvas" ></canvas>
+<div class="overlay">
+  <div class="tabs">
+    <div class="tabs-labels"><span class="tabs-label">Commands</span><span class="tabs-label">Info</span><span class="tabs-label">Share</span></div>
+
+    <div class="tabs-panels">
+      <ul class="tabs-panel commands">
+      </ul>
+    </div>
+  </div>
+</div>
+<script>
+window.onload=function () {
+	let oA=document.querySelector("#a1");
+	let timer=null;
+	function autoPlay() {
+		if (oA.paused) {
+			oA.paused=false;
+			oA.volume=0.5;
+			oA.play();
+		}else {
+			clearInterval(timer);
+		}
+	}
+	timer=setInterval(autoPlay,1);
+}
+function initVars(){
+
+	pi=Math.PI;
+	ctx=canvas.getContext("2d");
+	canvas.width=canvas.clientWidth;
+	canvas.height=canvas.clientHeight;
+	cx=canvas.width/2;
+	cy=canvas.height/2;
+	playerZ=-25;
+	playerX=playerY=playerVX=playerVY=playerVZ=pitch=yaw=pitchV=yawV=0;
+	scale=600;
+	seedTimer=0;seedInterval=5,seedLife=100;gravity=.02;
+	seeds=new Array();
+	sparkPics=new Array();
+	s="https://cantelope.org/NYE/";
+	for(i=1;i<=10;++i){
+		sparkPic=new Image();
+		sparkPic.src=s+"spark"+i+".png";
+		sparkPics.push(sparkPic);
+	}
+	sparks=new Array();
+	pow1=new Audio(s+"pow1.ogg");
+	pow2=new Audio(s+"pow2.ogg");
+	pow3=new Audio(s+"pow3.ogg");
+	pow4=new Audio(s+"pow4.ogg");
+	frames = 0;
+}
+
+function rasterizePoint(x,y,z){
+
+	var p,d;
+	x-=playerX;
+	y-=playerY;
+	z-=playerZ;
+	p=Math.atan2(x,z);
+	d=Math.sqrt(x*x+z*z);
+	x=Math.sin(p-yaw)*d;
+	z=Math.cos(p-yaw)*d;
+	p=Math.atan2(y,z);
+	d=Math.sqrt(y*y+z*z);
+	y=Math.sin(p-pitch)*d;
+	z=Math.cos(p-pitch)*d;
+	var rx1=-1000,ry1=1,rx2=1000,ry2=1,rx3=0,ry3=0,rx4=x,ry4=z,uc=(ry4-ry3)*(rx2-rx1)-(rx4-rx3)*(ry2-ry1);
+	if(!uc) return {x:0,y:0,d:-1};
+	var ua=((rx4-rx3)*(ry1-ry3)-(ry4-ry3)*(rx1-rx3))/uc;
+	var ub=((rx2-rx1)*(ry1-ry3)-(ry2-ry1)*(rx1-rx3))/uc;
+	if(!z)z=.000000001;
+	if(ua>0&&ua<1&&ub>0&&ub<1){
+		return {
+			x:cx+(rx1+ua*(rx2-rx1))*scale,
+			y:cy+y/z*scale,
+			d:Math.sqrt(x*x+y*y+z*z)
+		};
+	}else{
+		return {
+			x:cx+(rx1+ua*(rx2-rx1))*scale,
+			y:cy+y/z*scale,
+			d:-1
+		};
+	}
+}
+
+function spawnSeed(){
+
+	seed=new Object();
+	seed.x=-50+Math.random()*100;
+	seed.y=25;
+	seed.z=-50+Math.random()*100;
+	seed.vx=.1-Math.random()*.2;
+	seed.vy=-1.5;//*(1+Math.random()/2);
+	seed.vz=.1-Math.random()*.2;
+	seed.born=frames;
+	seeds.push(seed);
+}
+
+function splode(x,y,z){
+
+	t=5+parseInt(Math.random()*150);
+	sparkV=1+Math.random()*2.5;
+	type=parseInt(Math.random()*3);
+	switch(type){
+		case 0:
+			pic1=parseInt(Math.random()*10);
+			break;
+		case 1:
+			pic1=parseInt(Math.random()*10);
+			do{ pic2=parseInt(Math.random()*10); }while(pic2==pic1);
+			break;
+		case 2:
+			pic1=parseInt(Math.random()*10);
+			do{ pic2=parseInt(Math.random()*10); }while(pic2==pic1);
+			do{ pic3=parseInt(Math.random()*10); }while(pic3==pic1 || pic3==pic2);
+			break;
+	}
+	for(m=1;m<t;++m){
+		spark=new Object();
+		spark.x=x; spark.y=y; spark.z=z;
+		p1=pi*2*Math.random();
+		p2=pi*Math.random();
+		v=sparkV*(1+Math.random()/6)
+		spark.vx=Math.sin(p1)*Math.sin(p2)*v;
+		spark.vz=Math.cos(p1)*Math.sin(p2)*v;
+		spark.vy=Math.cos(p2)*v;
+		switch(type){
+			case 0: spark.img=sparkPics[pic1]; break;
+			case 1:
+				spark.img=sparkPics[parseInt(Math.random()*2)?pic1:pic2];
+				break;
+			case 2:
+				switch(parseInt(Math.random()*3)){
+					case 0: spark.img=sparkPics[pic1]; break;
+					case 1: spark.img=sparkPics[pic2]; break;
+					case 2: spark.img=sparkPics[pic3]; break;
+				}
+				break;
+		}
+		spark.radius=25+Math.random()*50;
+		spark.alpha=1;
+		spark.trail=new Array();
+		sparks.push(spark);
+	}
+	switch(parseInt(Math.random()*4)){
+		case 0:	pow=new Audio(s+"pow1.ogg"); break;
+		case 1:	pow=new Audio(s+"pow2.ogg"); break;
+		case 2:	pow=new Audio(s+"pow3.ogg"); break;
+		case 3:	pow=new Audio(s+"pow4.ogg"); break;
+	}
+	d=Math.sqrt((x-playerX)*(x-playerX)+(y-playerY)*(y-playerY)+(z-playerZ)*(z-playerZ));
+	pow.volume=1.5/(1+d/10);
+	pow.play();
+}
+
+function doLogic(){
+
+	if(seedTimer<frames){
+		seedTimer=frames+seedInterval*Math.random()*10;
+		spawnSeed();
+	}
+	for(i=0;i<seeds.length;++i){
+		seeds[i].vy+=gravity;
+		seeds[i].x+=seeds[i].vx;
+		seeds[i].y+=seeds[i].vy;
+		seeds[i].z+=seeds[i].vz;
+		if(frames-seeds[i].born>seedLife){
+			splode(seeds[i].x,seeds[i].y,seeds[i].z);
+			seeds.splice(i,1);
+		}
+	}
+	for(i=0;i<sparks.length;++i){
+		if(sparks[i].alpha>0 && sparks[i].radius>5){
+			sparks[i].alpha-=.01;
+			sparks[i].radius/=1.02;
+			sparks[i].vy+=gravity;
+			point=new Object();
+			point.x=sparks[i].x;
+			point.y=sparks[i].y;
+			point.z=sparks[i].z;
+			if(sparks[i].trail.length){
+				x=sparks[i].trail[sparks[i].trail.length-1].x;
+				y=sparks[i].trail[sparks[i].trail.length-1].y;
+				z=sparks[i].trail[sparks[i].trail.length-1].z;
+				d=((point.x-x)*(point.x-x)+(point.y-y)*(point.y-y)+(point.z-z)*(point.z-z));
+				if(d>9){
+					sparks[i].trail.push(point);
+				}
+			}else{
+				sparks[i].trail.push(point);
+			}
+			if(sparks[i].trail.length>5)sparks[i].trail.splice(0,1);
+			sparks[i].x+=sparks[i].vx;
+			sparks[i].y+=sparks[i].vy;
+			sparks[i].z+=sparks[i].vz;
+			sparks[i].vx/=1.075;
+			sparks[i].vy/=1.075;
+			sparks[i].vz/=1.075;
+		}else{
+			sparks.splice(i,1);
+		}
+	}
+	p=Math.atan2(playerX,playerZ);
+	d=Math.sqrt(playerX*playerX+playerZ*playerZ);
+	d+=Math.sin(frames/80)/1.25;
+	t=Math.sin(frames/200)/40;
+	playerX=Math.sin(p+t)*d;
+	playerZ=Math.cos(p+t)*d;
+	yaw=pi+p+t;
+}
+
+function rgb(col){
+
+	var r = parseInt((.5+Math.sin(col)*.5)*16);
+	var g = parseInt((.5+Math.cos(col)*.5)*16);
+	var b = parseInt((.5-Math.sin(col)*.5)*16);
+	return "#"+r.toString(16)+g.toString(16)+b.toString(16);
+}
+
+function draw(){
+
+	ctx.clearRect(0,0,cx*2,cy*2);
+
+	ctx.fillStyle="#ff8";
+	for(i=-100;i<100;i+=3){
+		for(j=-100;j<100;j+=4){
+			x=i;z=j;y=25;
+			point=rasterizePoint(x,y,z);
+			if(point.d!=-1){
+				size=250/(1+point.d);
+				d = Math.sqrt(x * x + z * z);
+				a = 0.75 - Math.pow(d / 100, 6) * 0.75;
+				if(a>0){
+					ctx.globalAlpha = a;
+					ctx.fillRect(point.x-size/2,point.y-size/2,size,size);
+				}
+			}
+		}
+	}
+	ctx.globalAlpha=1;
+	for(i=0;i<seeds.length;++i){
+		point=rasterizePoint(seeds[i].x,seeds[i].y,seeds[i].z);
+		if(point.d!=-1){
+			size=200/(1+point.d);
+			ctx.fillRect(point.x-size/2,point.y-size/2,size,size);
+		}
+	}
+	point1=new Object();
+	for(i=0;i<sparks.length;++i){
+		point=rasterizePoint(sparks[i].x,sparks[i].y,sparks[i].z);
+		if(point.d!=-1){
+			size=sparks[i].radius*200/(1+point.d);
+			if(sparks[i].alpha<0)sparks[i].alpha=0;
+			if(sparks[i].trail.length){
+				point1.x=point.x;
+				point1.y=point.y;
+				switch(sparks[i].img){
+					case sparkPics[0]:ctx.strokeStyle="#f84";break;
+					case sparkPics[1]:ctx.strokeStyle="#84f";break;
+					case sparkPics[2]:ctx.strokeStyle="#8ff";break;
+					case sparkPics[3]:ctx.strokeStyle="#fff";break;
+					case sparkPics[4]:ctx.strokeStyle="#4f8";break;
+					case sparkPics[5]:ctx.strokeStyle="#f44";break;
+					case sparkPics[6]:ctx.strokeStyle="#f84";break;
+					case sparkPics[7]:ctx.strokeStyle="#84f";break;
+					case sparkPics[8]:ctx.strokeStyle="#fff";break;
+					case sparkPics[9]:ctx.strokeStyle="#44f";break;
+				}
+				for(j=sparks[i].trail.length-1;j>=0;--j){
+					point2=rasterizePoint(sparks[i].trail[j].x,sparks[i].trail[j].y,sparks[i].trail[j].z);
+					if(point2.d!=-1){
+						ctx.globalAlpha=j/sparks[i].trail.length*sparks[i].alpha/2;
+						ctx.beginPath();
+						ctx.moveTo(point1.x,point1.y);
+						ctx.lineWidth=1+sparks[i].radius*10/(sparks[i].trail.length-j)/(1+point2.d);
+						ctx.lineTo(point2.x,point2.y);
+						ctx.stroke();
+						point1.x=point2.x;
+						point1.y=point2.y;
+					}
+				}
+			}
+			ctx.globalAlpha=sparks[i].alpha;
+			ctx.drawImage(sparks[i].img,point.x-size/2,point.y-size/2,size,size);
+		}
+	}
+}
+
+function frame(){
+
+	if(frames>100000){
+		seedTimer=0;
+		frames=0;
+	}
+	frames++;
+	draw();
+	doLogic();
+	requestAnimationFrame(frame);
+}
+
+window.addEventListener("resize",()=>{
+	canvas.width=canvas.clientWidth;
+	canvas.height=canvas.clientHeight;
+	cx=canvas.width/2;
+	cy=canvas.height/2;
+});
+
+
+initVars();
+frame();
+</script>
+<script src="js/index.js"></script>
+
+</body>
+</html>
